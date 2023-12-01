@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Клиенты{% endblock %}
+
+{% block content %}
+
+<p>Наши кленты </p>
+
+{% with title='Наша компания' %}
+{% for client in clients|dictsort:'lang' %}
+    {% for value in client.values %}
+        <p>{{ key }} {{ value }} </p>
+    {% endfor %}
+    <a href="{% url 'client' client.id %}"> Данные о клиенте нашей компании </a>
+{% empty %}
+    <p>Пока нет клиентов</p>
+{% endfor %}
+{% endwith %}
+
+{% endblock %}
